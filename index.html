@@ -23,8 +23,8 @@
     <div id="tasks" class="spaced" style="display: flex;flex-direction: row;flex-wrap: wrap;"></div>
     <!--Template code starts here-->
     <div class="template hidden flex column centrelized shield spaced">
-        <textarea placeholder="Describe task"></textarea>
-        <div class="flex row">
+        <textarea class="margined-sm" placeholder="Describe task"></textarea>
+        <div class="flex row margined-sm">
             <div class="submitTask" 
             style="box-shadow: 1px 1px 2px 1px dodgerblue;
             border: 1px solid dodgerblue;
@@ -56,9 +56,9 @@
             const id = `task${counter++}`;//To avoid id duplication, we used global variable counter
             clonedNode.setAttribute("id",id);
             const title = document.createElement("div");
-            title.innerHTML=`<h3>${id}</h3>;`
+            title.innerHTML=`<h2>${id}</h2>`;
             title.classList.add("top");
-            clonedNode.appendChild(title);//TODO: find way to prepend instead of append
+            clonedNode.appendChild(title);
             const deleteBtn = clonedNode.childNodes[3].childNodes[3];
             deleteBtn.addEventListener("click",()=>removeTask(id))
             document.getElementById("tasks").appendChild(clonedNode);
