@@ -1,3 +1,4 @@
-document.getElementsByClassName("addTaskBtn")
-.forEach(btn => btn.addEventListener('click')
-,e=>e.target.classList.toggle("hidden"));
+const removeTask = taskId => {
+    console.log(taskId);
+    document.getElementById("tasks").removeChild(document.getElementById(taskId));
+};

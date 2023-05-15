@@ -14,14 +14,28 @@
   flex-direction: row;
 }
 
+.spaced{
+  column-gap: 10px;
+  row-gap: 50px;
+}
+
 .centrelized {
   justify-content: center;
   align-items: center;
 }
 
 .shield{
-  box-shadow: 1px 1px 1px 1px black;
+  box-shadow: 1px 1px 5px 1px dodgerblue,2px 10px 20px 2px orange;
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
   padding: 3vmax;
+}
+::selection {
+  color: none;
+  background: none;
+}
+/* For Mozilla Firefox */
+::-moz-selection {
+  color: none;
+  background: none;
 }
