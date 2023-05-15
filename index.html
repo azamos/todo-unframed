@@ -21,7 +21,8 @@
     </div>
     TASKS:
     <div id="tasks" class="spaced" style="display: flex;flex-direction: row;flex-wrap: wrap;"></div>
-    <div class="template hidden flex column centrelized shield">
+    <!--Template code starts here-->
+    <div class="template hidden flex column centrelized shield spaced">
         <textarea placeholder="Describe task"></textarea>
         <div class="flex row">
             <div class="submitTask" 
@@ -40,19 +41,30 @@
             </div>
         </div>
     </div>
+    <!--Template code ENDS here-->
     <script>
         
-        var counter = 1;
-        var firstTask = document.getElementsByClassName("template")[0];
+        var counter = 1;//For purpose of id generating for each task
+
+        var firstTask = document.getElementsByClassName("template")[0];/*
+        *Get the html fragment of the template, to be later deep cloned with the Node.clone method
+        *whenever new tasks are created
+        */
         document.getElementById("btn").addEventListener("click",e=>{
             const clonedNode = firstTask.cloneNode(true);
-            clonedNode.classList.remove("hidden");
-            const id = `task${counter++}`;
+            clonedNode.classList.remove("hidden");//Since the template is hidden, this new "instance" must revert back to visible
+            const id = `task${counter++}`;//To avoid id duplication, we used global variable counter
             clonedNode.setAttribute("id",id);
+            const title = document.createElement("div");
+            title.innerHTML=`<h3>${id}</h3>;`
+            title.classList.add("top");
+            clonedNode.appendChild(title);//TODO: find way to prepend instead of append
             const deleteBtn = clonedNode.childNodes[3].childNodes[3];
             deleteBtn.addEventListener("click",()=>removeTask(id))
             document.getElementById("tasks").appendChild(clonedNode);
+            clonedNode.insertBefore(title,clonedNode.childNodes[1]);
         });
+
     </script>
 </body>
 </html>

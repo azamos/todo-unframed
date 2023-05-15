@@ -1,4 +1,2 @@
-const removeTask = taskId => {
-    console.log(taskId);
+const removeTask = taskId => 
     document.getElementById("tasks").removeChild(document.getElementById(taskId));
-};
