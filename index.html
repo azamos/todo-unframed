@@ -10,32 +10,32 @@
 </head>
 <body>
     <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;">
-        <h1>task manager</h1>
-        <div id="btn"
+        <h1 class="bigtext">task manager</h1>
+        <button id="btn"
         style="box-shadow: 2px 2px 20px 2px dodgerblue;
         border: 2px solid orange;
         width: 10vw;height: 10vh;
         display: flex;flex-direction: column;justify-content: center;align-items: center;">
             <h2>Add a task</h2>
-        </div>
+        </button>
     </div>
     TASKS:
-    <div id="tasks" class="spaced" style="display: flex;flex-direction: row;flex-wrap: wrap;"></div>
+    <div id="tasks" class="spaced centrelized" style="display: flex;flex-direction: column;"></div>
     <!--Template code starts here-->
     <div class="template hidden flex column centrelized shield spaced">
-        <textarea class="margined-sm" placeholder="Describe task"></textarea>
+        <textarea class="margined-sm" maxlength="30" rows="5" cols="30" placeholder="Describe task"></textarea>
         <div class="flex row margined-sm">
             <div class="submitTask" 
             style="box-shadow: 1px 1px 2px 1px dodgerblue;
             border: 1px solid dodgerblue;
-            width: 3vw;height: 3vh;
+            width: 5vw;height: 5vh;
             display: flex;flex-direction: column;justify-content: center;align-items: center;">
                 <h2>+</h2>
             </div>
             <div  class="deleteTask"
             style="box-shadow: 1px 1px 2px 1px red;
             border: 1px solid red;
-            width: 3vw;height: 3vh;
+            width: 5vw;height: 5vh;
             display: flex;flex-direction: column;justify-content: center;align-items: center;">
                 <h2>-</h2>
             </div>
@@ -55,11 +55,22 @@
             clonedNode.classList.remove("hidden");//Since the template is hidden, this new "instance" must revert back to visible
             const id = `task${counter++}`;//To avoid id duplication, we used global variable counter
             clonedNode.setAttribute("id",id);
+
+            //Adding a nice blue strip on top of a task component, with the title inside
             const title = document.createElement("div");
-            title.innerHTML=`<h2>${id}</h2>`;
+            title.innerHTML=`<img class="rotateDown" width="30px" src="./arrowDiag.png"/><h2 class="bigtext">${id}</h2><img class="rotateUp" width="30px" src="./arrowDiag.png"/>`;
             title.classList.add("top");
-            clonedNode.appendChild(title);
+            title.classList.add("flex")
+            title.classList.add("row");;
+            title.classList.add("centrelized");
+            title.classList.add("spaced");
+
+            clonedNode.appendChild(title);//TODO: test tommorow if can be removed
+
+            //due to arbitrary html hierarchy, annoying to access
             const deleteBtn = clonedNode.childNodes[3].childNodes[3];
+
+            //removeTask defined in external index.js file. TODO: move inside
             deleteBtn.addEventListener("click",()=>removeTask(id))
             document.getElementById("tasks").appendChild(clonedNode);
             clonedNode.insertBefore(title,clonedNode.childNodes[1]);
